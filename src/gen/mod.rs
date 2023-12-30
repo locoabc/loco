@@ -31,7 +31,8 @@ const DEPLOYMENT_DOCKER_T: &str = include_str!("templates/deployment_docker.t");
 const DEPLOYMENT_DOCKER_IGNORE_T: &str = include_str!("templates/deployment_docker_ignore.t");
 const DEPLOYMENT_SHUTTLE_T: &str = include_str!("templates/deployment_shuttle.t");
 const DEPLOYMENT_SHUTTLE_CONFIG_T: &str = include_str!("templates/deployment_shuttle_config.t");
-const DEPLOYMENT_NGINX_T: &str = include_str!("templates/deployment_nginx_config.t");
+const DEPLOYMENT_NGINX_T: &str = include_str!("templates/deployment_nginx.t");
+const DEPLOYMENT_NGINX_CONFIG_T: &str = include_str!("templates/deployment_nginx_config.t");
 
 const DEPLOYMENT_SHUTTLE_RUNTIME_VERSION: &str = "0.35.0";
 const DEPLOYMENT_SHUTTLE_AXUM_VERSION: &str = "0.35.0";
