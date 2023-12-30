@@ -187,6 +187,7 @@ pub fn generate<H: Hooks>(component: Component, config: &Config) -> Result<()> {
                         .replace("https://", "");
 		    let vars = json!({ "pkg_name": H::app_name(), "domain": &host, "port": &config.server.port });
                     rrgen.generate(DEPLOYMENT_NGINX_T, &vars)?;
+                    rrgen.generate(DEPLOYMENT_NGINX_CONFIG_T, &vars)?;
                 }
 		
             }
