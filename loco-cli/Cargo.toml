@@ -41,8 +41,13 @@ fs_extra = "1.3.0"
 lazy_static = "1.4.0"
 tracing = "0.1.40"
 tracing-subscriber = { version = "0.3.16", features = ["env-filter"] }
+cargo-generate-rpm = "0.13.0"
 
 [dev-dependencies]
 trycmd = "0.14.19"
 tree-fs = "0.1.0"
 insta = { version = "1.34.0", features = ["redactions", "yaml", "filters"] }
+[package.metadata.generate-rpm]
+assets = [
+    { source = "target/release/loco", dest = "/usr/bin/loco", mode = "755" },
+]
