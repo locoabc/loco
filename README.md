@@ -23,6 +23,10 @@ To work with Loco, you need to know Rust to a beginner-moderate level. There are
 
 ```sh
 $ cargo install loco-cli
+
+check docker status
+```
+ docker ps --format 'table {{.Names}}\t{{.Image}}\t{{.Status}}';date
 ```
 
 Now you can create your new app (choose "Saas app").
