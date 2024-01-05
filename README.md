@@ -25,6 +25,7 @@ To work with Loco, you need to know Rust to a beginner-moderate level. There are
 $ cargo install loco-cli
 
 check docker status
+
 ```
  docker ps --format 'table {{.Names}}\t{{.Image}}\t{{.Status}}';date
 ```
