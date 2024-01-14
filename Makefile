@@ -3,7 +3,7 @@ VERSION		= 1.0
 RELEASE		= 2
 DATE		= $(shell date)
 NEWRELEASE	= $(shell echo $$(($(RELEASE) + 1)))
-PROJECT_NAME    = rexpect-examples
+PROJECT_NAME    = loco
 TOPDIR = $(shell pwd)
 MANPAGES =
 A2PS2S1C  = /usr/bin/enscript -H1 --highlight-bar-gray=08 -fCourier8 -Ebash
@@ -90,7 +90,7 @@ args = `arg="$(filter-out $@,$(MAKECMDGOALS))" && echo $${arg:-${1}}`
 status:
 	git status
 commit:
-	git commit -am "$(call args, Automated commit message without details, Please read the git diff)"  && git push
+	git commit -am "$(call args, Automated commit message(make commit), Please read the git diff)"  && git push
 pull:
 	git pull
 install:
