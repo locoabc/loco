@@ -139,19 +139,20 @@ pub async fn run_db<H: Hooks, M: MigratorTrait>(
     match cmd {
         RunDbCommand::Migrate => {
             tracing::warn!("migrate:");
-            let _ = db::migrate::<M>(&app_context.db).await;
+            db::migrate::<M>(&app_context.db).await?;
         }
         RunDbCommand::Reset => {
             tracing::warn!("reset:");
-            let _ = db::reset::<M>(&app_context.db).await;
+            db::reset::<M>(&app_context.db).await?;
         }
         RunDbCommand::Status => {
             tracing::warn!("status:");
-            let _ = db::status::<M>(&app_context.db).await;
+            db::status::<M>(&app_context.db).await?;
         }
         RunDbCommand::Entities => {
             tracing::warn!("entities:");
-            tracing::warn!("{}", db::entities::<M>(app_context)?);
+
+            tracing::warn!("{}", db::entities::<M>(app_context).await?);
         }
         RunDbCommand::Truncate => {
             tracing::warn!("truncate:");
