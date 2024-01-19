@@ -183,3 +183,5 @@ help:
 	@echo "  pull                   ie, git pull"
 	@echo ""
 
+test-demo:
+	(cd examples/demo/ && cargo test --all-features --all)
