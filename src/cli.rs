@@ -37,7 +37,9 @@ use crate::{
     logger, Result,
 };
 #[derive(Parser)]
-#[command(author,help_template = "{before-help}{name} {version} {authoxr-with-newline} {about-with-newline}{usage-heading} [Options] [Commands] [Options]
+#[command(author,help_template = "{before-help}{name} {version} {author-with-newline} {about-with-newline} 
+{usage-heading} [Options] [Commands] [Options]
+
 {all-args}{after-help}",version,about, long_about = None)]
 #[command(propagate_version = true)]
 struct Playground {
@@ -47,7 +49,9 @@ struct Playground {
 }
 
 #[derive(Parser)]
-#[command(author,help_template = "{before-help}{name} {version} {author-with-newline}{about-with-newline}{usage-heading} [Options] [Commands] [Options]
+#[command(author,help_template = "{before-help}{name} {version} {author-with-newline}{about-with-newline} 
+{usage-heading} [Options] [Commands] [Options]
+
 {all-args}{after-help}",version,about,long_about = None)]
 #[command(propagate_version = true)]
 struct Cli {
