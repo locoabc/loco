@@ -37,11 +37,11 @@ use crate::{
     logger, Result,
 };
 #[derive(Parser)]
-#[command(author,help_template = "{before-help}{name} {version} {author-with-newline} {about-with-newline} 
+#[command(author,help_template = "{before-help}{name} {version}  {author-with-newline} {about-with-newline} 
 {usage-heading} [Options] [Commands] [Options]
 
 {all-args}{after-help}",version,about, long_about = None)]
-#[command(propagate_version = true)]
+#[command(propagate_version = false)]
 struct Playground {
     /// Specify the environment
     #[arg(short, long, global = true, help = &format!("Specify the environment [default: {}]", DEFAULT_ENVIRONMENT))]
@@ -49,11 +49,11 @@ struct Playground {
 }
 
 #[derive(Parser)]
-#[command(author,help_template = "{before-help}{name} {version} {author-with-newline}{about-with-newline} 
+#[command(author,help_template = "{before-help}{name} {version}  {author-with-newline} {about-with-newline} 
 {usage-heading} [Options] [Commands] [Options]
 
 {all-args}{after-help}",version,about,long_about = None)]
-#[command(propagate_version = true)]
+#[command(propagate_version = false)]
 struct Cli {
     #[command(subcommand)]
     command: Commands,
