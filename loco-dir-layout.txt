@@ -1,343 +1,348 @@
 .
-├── Cargo.lock
-├── Cargo.toml
-├── CHANGELOG.md
-├── CODE_OF_CONDUCT.md
-├── CONTRIBUTING.md
-├── DEVELOPMENT.md
-├── docs-site
-│   ├── config.toml
-│   ├── content
-│   │   ├── authors
-│   │   │   ├── _index.md
-│   │   │   └── team-loco.md
-│   │   ├── blog
-│   │   │   ├── axum-session.md
-│   │   │   ├── deploy-aws.md
-│   │   │   ├── frontend-website.md
-│   │   │   ├── hello-world.md
-│   │   │   └── _index.md
-│   │   ├── docs
-│   │   │   ├── features
-│   │   │   ├── getting-started
-│   │   │   ├── help
-│   │   │   ├── _index.md
-│   │   │   ├── testing
-│   │   │   └── the-app
-│   │   ├── _index.md
-│   │   └── privacy-policy
-│   │       └── _index.md
-│   ├── static
-│   │   ├── images
-│   │   │   └── logo.png
-│   │   └── processed_images
-│   │       ├── logo.4aeb53be0cc35cb8.png
-│   │       ├── logo.8858825d70de731a.png
-│   │       └── logo.8da33dd02b6224b7.png
-│   ├── templates
-│   └── themes
-│       └── adidoks
-│           ├── CODE_OF_CONDUCT.md
-│           ├── config.toml
-│           ├── config.toml.example
-│           ├── content
-│           ├── CONTRIBUTING.md
-│           ├── LICENSE
-│           ├── netlify.toml
-│           ├── README.md
-│           ├── sass
-│           ├── screenshot.png
-│           ├── static
-│           ├── templates
-│           └── theme.toml
-├── examples
-│   ├── demo
-│   │   ├── Cargo.lock
-│   │   ├── Cargo.toml
-│   │   ├── config
-│   │   │   ├── development.yaml
-│   │   │   ├── production.yaml
-│   │   │   └── test.yaml
-│   │   ├── examples
-│   │   │   ├── playground.rs
-│   │   │   ├── start.rs
-│   │   │   ├── task.rs
-│   │   │   └── workers.rs
-│   │   ├── migration
-│   │   │   ├── Cargo.lock
-│   │   │   ├── Cargo.toml
-│   │   │   ├── README.md
-│   │   │   └── src
-│   │   ├── src
-│   │   │   ├── app.rs
-│   │   │   ├── bin
-│   │   │   ├── common
-│   │   │   ├── controllers
-│   │   │   ├── fixtures
-│   │   │   ├── initializers
-│   │   │   ├── lib.rs
-│   │   │   ├── mailers
-│   │   │   ├── models
-│   │   │   ├── tasks
-│   │   │   ├── views
-│   │   │   └── workers
-│   │   └── tests
-│   │       ├── cli_tests.rs
-│   │       ├── cmd
-│   │       ├── models
-│   │       ├── mod.rs
-│   │       ├── requests
-│   │       ├── tasks
-│   │       └── workers
-│   ├── llm-candle-inference
-│   │   ├── Cargo.toml
-│   │   ├── config
-│   │   │   ├── development.yaml
-│   │   │   ├── production.yaml
-│   │   │   └── test.yaml
-│   │   ├── README.md
-│   │   ├── src
-│   │   │   ├── app.rs
-│   │   │   ├── bin
-│   │   │   ├── controllers
-│   │   │   └── lib.rs
-│   │   └── tests
-│   │       ├── cli_tests.rs
-│   │       ├── cmd
-│   │       ├── mod.rs
-│   │       └── requests
-│   └── todolist
-│       ├── Cargo.lock
-│       └── frontend
-│           ├── dist
-│           └── node_modules
-├── LICENSE
-├── loco-cli
-│   ├── Cargo.lock
-│   ├── Cargo.toml
-│   ├── README.md
-│   ├── src
-│   │   ├── bin
-│   │   │   └── main.rs
-│   │   ├── generate.rs
-│   │   ├── git.rs
-│   │   ├── lib.rs
-│   │   ├── prompt.rs
-│   │   └── snapshots
-│   │       ├── loco_cli__generate__tests__can_collect_templates.snap
-│   │       ├── loco_cli__generate__tests__can_generate-2.snap
-│   │       ├── loco_cli__generate__tests__can_generate-3.snap
-│   │       ├── loco_cli__generate__tests__can_generate_skip_files-2.snap
-│   │       ├── loco_cli__generate__tests__can_generate_skip_files.snap
-│   │       └── loco_cli__generate__tests__can_generate.snap
-│   └── tests
-│       ├── cli_tests.rs
-│       └── cmd
-│           └── generate-website.trycmd
-├── loco-dir-layout.txt
-├── macros
-│   ├── Cargo.toml
-│   ├── src
-│   │   └── lib.rs
-│   └── tests
-│       └── attr_macro.rs
-├── Makefile
-├── media
-│   └── image.png
-├── README.md
-├── src
-│   ├── app.rs
-│   ├── auth
-│   │   ├── jwt.rs
-│   │   ├── mod.rs
-│   │   └── snapshots
-│   │       ├── loco_rs__auth__jwt__tests__token expired.snap
-│   │       └── loco_rs__auth__jwt__tests__valid token.snap
-│   ├── banner.rs
-│   ├── boot.rs
-│   ├── cli.rs
-│   ├── concern
-│   │   ├── mod.rs
-│   │   └── pagination.rs
-│   ├── config.rs
-│   ├── controller
-│   │   ├── app_routes.rs
-│   │   ├── backtrace.rs
-│   │   ├── describe.rs
-│   │   ├── format.rs
-│   │   ├── health.rs
-│   │   ├── middleware
-│   │   │   ├── _archive
-│   │   │   ├── auth.rs
-│   │   │   ├── etag.rs
-│   │   │   └── mod.rs
-│   │   ├── mod.rs
-│   │   ├── ping.rs
-│   │   ├── routes.rs
-│   │   └── views
-│   │       ├── mod.rs
-│   │       └── pagination.rs
-│   ├── db.rs
-│   ├── doctor.rs
-│   ├── environment.rs
-│   ├── errors.rs
-│   ├── gen
-│   │   ├── model.rs
-│   │   ├── mod.rs
-│   │   ├── scaffold.rs
-│   │   └── templates
-│   │       ├── controller_scaffold.t
-│   │       ├── controller.t
-│   │       ├── deployment_docker_ignore.t
-│   │       ├── deployment_docker.t
-│   │       ├── deployment_nginx.t
-│   │       ├── deployment_shuttle_config.t
-│   │       ├── deployment_shuttle.t
-│   │       ├── mailer_html.t
-│   │       ├── mailer_sub.t
-│   │       ├── mailer.t
-│   │       ├── mailer_text.t
-│   │       ├── migration.t
-│   │       ├── model.t
-│   │       ├── model_test.t
-│   │       ├── request_test.t
-│   │       ├── task.t
-│   │       ├── task_test.t
-│   │       ├── worker.t
-│   │       └── worker_test.t
-│   ├── hash.rs
-│   ├── lib.rs
-│   ├── logger.rs
-│   ├── mailer
-│   │   ├── email_sender.rs
-│   │   ├── mod.rs
-│   │   ├── snapshots
-│   │   │   ├── loco_rs__mailer__email_sender__tests__can_send_email.snap
-│   │   │   └── loco_rs__mailer__template__tests__can_render_template.snap
-│   │   └── template.rs
-│   ├── model.rs
-│   ├── prelude.rs
-│   ├── redis.rs
-│   ├── schema.rs
-│   ├── snapshots
-│   │   ├── loco_rs__auth__tests__token expired.snap
-│   │   ├── loco_rs__auth__tests__valid token.snap
-│   │   ├── loco_rs__validation__tests__struct-[foo-bar].snap
-│   │   └── loco_rs__validation__tests__struct-[foo].snap
-│   ├── task.rs
-│   ├── tera.rs
-│   ├── testing.rs
-│   ├── validation.rs
-│   └── worker.rs
-├── starters
-│   ├── lightweight-service
-│   │   ├── Cargo.toml
-│   │   ├── config
-│   │   │   ├── development.yaml
-│   │   │   ├── production.yaml
-│   │   │   └── test.yaml
-│   │   ├── generator.yaml
-│   │   ├── README.md
-│   │   ├── src
-│   │   │   ├── app.rs
-│   │   │   ├── bin
-│   │   │   ├── controllers
-│   │   │   ├── lib.rs
-│   │   │   └── views
-│   │   └── tests
-│   │       ├── mod.rs
-│   │       └── requests
-│   ├── README.md
-│   ├── rest-api
-│   │   ├── Cargo.lock
-│   │   ├── Cargo.toml
-│   │   ├── config
-│   │   │   ├── development.yaml
-│   │   │   ├── production.yaml
-│   │   │   └── test.yaml
-│   │   ├── examples
-│   │   │   └── playground.rs
-│   │   ├── generator.yaml
-│   │   ├── migration
-│   │   │   ├── Cargo.toml
-│   │   │   ├── README.md
-│   │   │   └── src
-│   │   ├── README.md
-│   │   ├── src
-│   │   │   ├── app.rs
-│   │   │   ├── bin
-│   │   │   ├── controllers
-│   │   │   ├── fixtures
-│   │   │   ├── lib.rs
-│   │   │   ├── mailers
-│   │   │   ├── models
-│   │   │   ├── tasks
-│   │   │   ├── views
-│   │   │   └── workers
-│   │   └── tests
-│   │       ├── models
-│   │       ├── mod.rs
-│   │       ├── requests
-│   │       └── tasks
-│   └── saas
-│       ├── Cargo.toml
-│       ├── config
-│       │   ├── development.yaml
-│       │   ├── production.yaml
-│       │   └── test.yaml
-│       ├── examples
-│       │   └── playground.rs
-│       ├── frontend
-│       │   ├── dist
-│       │   ├── favicon.ico
-│       │   ├── index.html
-│       │   ├── package.json
-│       │   ├── pnpm-lock.yaml
-│       │   ├── README.md
-│       │   ├── src
-│       │   └── vite.config.js
-│       ├── generator.yaml
-│       ├── migration
-│       │   ├── Cargo.toml
-│       │   ├── README.md
-│       │   └── src
-│       ├── README.md
-│       ├── src
-│       │   ├── app.rs
-│       │   ├── bin
-│       │   ├── controllers
-│       │   ├── fixtures
-│       │   ├── lib.rs
-│       │   ├── mailers
-│       │   ├── models
-│       │   ├── tasks
-│       │   ├── views
-│       │   └── workers
-│       └── tests
-│           ├── models
-│           ├── mod.rs
-│           ├── requests
-│           └── tasks
-├── tests
-│   └── fixtures
-│       └── email_template
-│           └── test
-├── tmp
-│   └── src
-│       └── bin
-└── xtask
-    ├── Cargo.lock
-    ├── Cargo.toml
-    ├── README.md
-    └── src
-        ├── bin
-        │   └── main.rs
-        ├── bump_version.rs
-        ├── ci.rs
-        ├── errors.rs
-        ├── lib.rs
-        ├── out.rs
-        ├── prompt.rs
-        └── utils.rs
+./Cargo.lock
+./Cargo.toml
+./CHANGELOG.md
+./CODE_OF_CONDUCT.md
+./CONTRIBUTING.md
+./DEVELOPMENT.md
+./docs-site
+./docs-site/config.toml
+./docs-site/content
+./docs-site/content/authors
+./docs-site/content/authors/_index.md
+./docs-site/content/authors/team-loco.md
+./docs-site/content/blog
+./docs-site/content/blog/axum-session.md
+./docs-site/content/blog/deploy-aws.md
+./docs-site/content/blog/frontend-website.md
+./docs-site/content/blog/hello-world.md
+./docs-site/content/blog/_index.md
+./docs-site/content/docs
+./docs-site/content/docs/examples
+./docs-site/content/docs/features
+./docs-site/content/docs/getting-started
+./docs-site/content/docs/help
+./docs-site/content/docs/_index.md
+./docs-site/content/docs/testing
+./docs-site/content/docs/the-app
+./docs-site/content/_index.md
+./docs-site/content/privacy-policy
+./docs-site/content/privacy-policy/_index.md
+./docs-site/static
+./docs-site/static/images
+./docs-site/static/images/logo.png
+./docs-site/static/processed_images
+./docs-site/static/processed_images/logo.4aeb53be0cc35cb8.png
+./docs-site/static/processed_images/logo.8858825d70de731a.png
+./docs-site/static/processed_images/logo.8da33dd02b6224b7.png
+./docs-site/templates
+./docs-site/themes
+./docs-site/themes/adidoks
+./docs-site/themes/adidoks/CODE_OF_CONDUCT.md
+./docs-site/themes/adidoks/config.toml
+./docs-site/themes/adidoks/config.toml.example
+./docs-site/themes/adidoks/content
+./docs-site/themes/adidoks/CONTRIBUTING.md
+./docs-site/themes/adidoks/LICENSE
+./docs-site/themes/adidoks/netlify.toml
+./docs-site/themes/adidoks/README.md
+./docs-site/themes/adidoks/sass
+./docs-site/themes/adidoks/screenshot.png
+./docs-site/themes/adidoks/static
+./docs-site/themes/adidoks/templates
+./docs-site/themes/adidoks/theme.toml
+./examples
+./examples/demo
+./examples/demo/Cargo.lock
+./examples/demo/Cargo.toml
+./examples/demo/config
+./examples/demo/config/development.yaml
+./examples/demo/config/production.yaml
+./examples/demo/config/teste2e.yaml
+./examples/demo/config/test.yaml
+./examples/demo/examples
+./examples/demo/examples/playground.rs
+./examples/demo/examples/start.rs
+./examples/demo/examples/task.rs
+./examples/demo/examples/workers.rs
+./examples/demo/migration
+./examples/demo/migration/Cargo.toml
+./examples/demo/migration/README.md
+./examples/demo/migration/src
+./examples/demo/src
+./examples/demo/src/app.rs
+./examples/demo/src/bin
+./examples/demo/src/common
+./examples/demo/src/controllers
+./examples/demo/src/fixtures
+./examples/demo/src/initializers
+./examples/demo/src/lib.rs
+./examples/demo/src/mailers
+./examples/demo/src/models
+./examples/demo/src/tasks
+./examples/demo/src/views
+./examples/demo/src/workers
+./examples/demo/tests
+./examples/demo/tests/cli_tests.rs
+./examples/demo/tests/cmd
+./examples/demo/tests/models
+./examples/demo/tests/mod.rs
+./examples/demo/tests/requests
+./examples/demo/tests/tasks
+./examples/demo/tests/workers
+./examples/llm-candle-inference
+./examples/llm-candle-inference/Cargo.lock
+./examples/llm-candle-inference/Cargo.toml
+./examples/llm-candle-inference/config
+./examples/llm-candle-inference/config/development.yaml
+./examples/llm-candle-inference/config/production.yaml
+./examples/llm-candle-inference/config/test.yaml
+./examples/llm-candle-inference/README.md
+./examples/llm-candle-inference/src
+./examples/llm-candle-inference/src/app.rs
+./examples/llm-candle-inference/src/bin
+./examples/llm-candle-inference/src/controllers
+./examples/llm-candle-inference/src/lib.rs
+./examples/llm-candle-inference/tests
+./examples/llm-candle-inference/tests/cli_tests.rs
+./examples/llm-candle-inference/tests/cmd
+./examples/llm-candle-inference/tests/mod.rs
+./examples/llm-candle-inference/tests/requests
+./examples/saas_pg
+./examples/saas_pg/Cargo.lock
+./examples/todolist
+./examples/todolist/Cargo.lock
+./LICENSE
+./loco-cli
+./loco-cli/Cargo.lock
+./loco-cli/Cargo.toml
+./loco-cli/README.md
+./loco-cli/src
+./loco-cli/src/bin
+./loco-cli/src/bin/main.rs
+./loco-cli/src/generate.rs
+./loco-cli/src/git.rs
+./loco-cli/src/lib.rs
+./loco-cli/src/prompt.rs
+./loco-cli/src/snapshots
+./loco-cli/src/snapshots/loco_cli__generate__tests__can_collect_templates.snap
+./loco-cli/src/snapshots/loco_cli__generate__tests__can_generate-2.snap
+./loco-cli/src/snapshots/loco_cli__generate__tests__can_generate-3.snap
+./loco-cli/src/snapshots/loco_cli__generate__tests__can_generate_skip_files-2.snap
+./loco-cli/src/snapshots/loco_cli__generate__tests__can_generate_skip_files.snap
+./loco-cli/src/snapshots/loco_cli__generate__tests__can_generate.snap
+./loco-cli/tests
+./loco-cli/tests/cli_tests.rs
+./loco-cli/tests/cmd
+./loco-cli/tests/cmd/generate-website.trycmd
+./#loco-dir-layout.txt#
+./loco-dir-layout.txt
+./macros
+./macros/Cargo.toml
+./macros/src
+./macros/src/lib.rs
+./macros/tests
+./macros/tests/attr_macro.rs
+./Makefile
+./media
+./media/image.png
+./README.md
+./src
+./src/app.rs
+./src/auth
+./src/auth/jwt.rs
+./src/auth/mod.rs
+./src/auth/snapshots
+./src/auth/snapshots/loco_rs__auth__jwt__tests__token expired.snap
+./src/auth/snapshots/loco_rs__auth__jwt__tests__valid token.snap
+./src/banner.rs
+./src/boot.rs
+./src/cli.rs
+./src/concern
+./src/concern/mod.rs
+./src/concern/pagination.rs
+./src/config.rs
+./src/controller
+./src/controller/app_routes.rs
+./src/controller/backtrace.rs
+./src/controller/channels.rs
+./src/controller/describe.rs
+./src/controller/format.rs
+./src/controller/health.rs
+./src/controller/middleware
+./src/controller/middleware/_archive
+./src/controller/middleware/auth.rs
+./src/controller/middleware/etag.rs
+./src/controller/middleware/mod.rs
+./src/controller/mod.rs
+./src/controller/ping.rs
+./src/controller/routes.rs
+./src/controller/views
+./src/controller/views/mod.rs
+./src/controller/views/pagination.rs
+./src/db.rs
+./src/doctor.rs
+./src/environment.rs
+./src/errors.rs
+./src/gen
+./src/gen/model.rs
+./src/gen/mod.rs
+./src/gen/scaffold.rs
+./src/gen/templates
+./src/gen/templates/controller_scaffold.t
+./src/gen/templates/controller.t
+./src/gen/templates/deployment_docker_ignore.t
+./src/gen/templates/deployment_docker.t
+./src/gen/templates/deployment_nginx.t
+./src/gen/templates/deployment_shuttle_config.t
+./src/gen/templates/deployment_shuttle.t
+./src/gen/templates/mailer_html.t
+./src/gen/templates/mailer_sub.t
+./src/gen/templates/mailer.t
+./src/gen/templates/mailer_text.t
+./src/gen/templates/migration.t
+./src/gen/templates/model.t
+./src/gen/templates/model_test.t
+./src/gen/templates/request_test.t
+./src/gen/templates/task.t
+./src/gen/templates/task_test.t
+./src/gen/templates/worker.t
+./src/gen/templates/worker_test.t
+./src/hash.rs
+./src/lib.rs
+./src/logger.rs
+./src/mailer
+./src/mailer/email_sender.rs
+./src/mailer/mod.rs
+./src/mailer/snapshots
+./src/mailer/snapshots/loco_rs__mailer__email_sender__tests__can_send_email.snap
+./src/mailer/snapshots/loco_rs__mailer__template__tests__can_render_template.snap
+./src/mailer/template.rs
+./src/model.rs
+./src/prelude.rs
+./src/redis.rs
+./src/schema.rs
+./src/snapshots
+./src/snapshots/loco_rs__auth__tests__token expired.snap
+./src/snapshots/loco_rs__auth__tests__valid token.snap
+./src/snapshots/loco_rs__validation__tests__struct-[foo-bar].snap
+./src/snapshots/loco_rs__validation__tests__struct-[foo].snap
+./src/task.rs
+./src/tera.rs
+./src/testing.rs
+./src/validation.rs
+./src/worker.rs
+./starters
+./starters/lightweight-service
+./starters/lightweight-service/Cargo.lock
+./starters/lightweight-service/Cargo.toml
+./starters/lightweight-service/config
+./starters/lightweight-service/config/development.yaml
+./starters/lightweight-service/config/production.yaml
+./starters/lightweight-service/config/test.yaml
+./starters/lightweight-service/generator.yaml
+./starters/lightweight-service/README.md
+./starters/lightweight-service/src
+./starters/lightweight-service/src/app.rs
+./starters/lightweight-service/src/bin
+./starters/lightweight-service/src/controllers
+./starters/lightweight-service/src/lib.rs
+./starters/lightweight-service/src/views
+./starters/lightweight-service/tests
+./starters/lightweight-service/tests/mod.rs
+./starters/lightweight-service/tests/requests
+./starters/README.md
+./starters/rest-api
+./starters/rest-api/Cargo.lock
+./starters/rest-api/Cargo.toml
+./starters/rest-api/config
+./starters/rest-api/config/development.yaml
+./starters/rest-api/config/production.yaml
+./starters/rest-api/config/test.yaml
+./starters/rest-api/examples
+./starters/rest-api/examples/playground.rs
+./starters/rest-api/generator.yaml
+./starters/rest-api/migration
+./starters/rest-api/migration/Cargo.toml
+./starters/rest-api/migration/README.md
+./starters/rest-api/migration/src
+./starters/rest-api/README.md
+./starters/rest-api/src
+./starters/rest-api/src/app.rs
+./starters/rest-api/src/bin
+./starters/rest-api/src/controllers
+./starters/rest-api/src/fixtures
+./starters/rest-api/src/lib.rs
+./starters/rest-api/src/mailers
+./starters/rest-api/src/models
+./starters/rest-api/src/tasks
+./starters/rest-api/src/views
+./starters/rest-api/src/workers
+./starters/rest-api/tests
+./starters/rest-api/tests/models
+./starters/rest-api/tests/mod.rs
+./starters/rest-api/tests/requests
+./starters/rest-api/tests/tasks
+./starters/saas
+./starters/saas/Cargo.lock
+./starters/saas/Cargo.toml
+./starters/saas/config
+./starters/saas/config/development.yaml
+./starters/saas/config/production.yaml
+./starters/saas/config/test.yaml
+./starters/saas/examples
+./starters/saas/examples/playground.rs
+./starters/saas/frontend
+./starters/saas/frontend/dist
+./starters/saas/frontend/favicon.ico
+./starters/saas/frontend/index.html
+./starters/saas/frontend/package.json
+./starters/saas/frontend/pnpm-lock.yaml
+./starters/saas/frontend/README.md
+./starters/saas/frontend/src
+./starters/saas/frontend/vite.config.js
+./starters/saas/generator.yaml
+./starters/saas/migration
+./starters/saas/migration/Cargo.toml
+./starters/saas/migration/README.md
+./starters/saas/migration/src
+./starters/saas/README.md
+./starters/saas/src
+./starters/saas/src/app.rs
+./starters/saas/src/bin
+./starters/saas/src/controllers
+./starters/saas/src/fixtures
+./starters/saas/src/lib.rs
+./starters/saas/src/mailers
+./starters/saas/src/models
+./starters/saas/src/tasks
+./starters/saas/src/views
+./starters/saas/src/workers
+./starters/saas/tests
+./starters/saas/tests/models
+./starters/saas/tests/mod.rs
+./starters/saas/tests/requests
+./starters/saas/tests/tasks
+./tests
+./tests/fixtures
+./tests/fixtures/email_template
+./tests/fixtures/email_template/test
+./tmp
+./tmp/src
+./tmp/src/bin
+./xtask
+./xtask/Cargo.lock
+./xtask/Cargo.toml
+./xtask/README.md
+./xtask/src
+./xtask/src/bin
+./xtask/src/bin/main.rs
+./xtask/src/bump_version.rs
+./xtask/src/ci.rs
+./xtask/src/errors.rs
+./xtask/src/lib.rs
+./xtask/src/out.rs
+./xtask/src/prompt.rs
+./xtask/src/utils.rs
 
-137 directories, 203 files
+136 directories, 209 files

@@ -74,14 +74,14 @@ pdf: .pdf
 	cp ${A2PSTMP}/lenovoad/src/bin/*.pdf  ${DOCS}/src
 	touch .pdf
 tree: clean
-	tree -L 4 > ${PROJECT_NAME}-dir-layout.txt
+	tree -if -L 4 > ${PROJECT_NAME}-dir-layout.txt
 
 .PHONY: tests test2
 tests:
 	(python -m unittest tests/test_cmdb.py)
 
-# enable makefile to accept argument after command
-#https://stackoverflow.com/questions/6273608/how-to-pass-argument-to-makefile-from-command-line
+# Enable makefile to accept argument after command
+# https://stackoverflow.com/questions/6273608/how-to-pass-argument-to-makefile-from-command-line
 
 args = `arg="$(filter-out $@,$(MAKECMDGOALS))" && echo $${arg:-${1}}`
 %:
