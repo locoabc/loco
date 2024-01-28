@@ -31,7 +31,10 @@ use clap::{Parser, Subcommand};
 
 use crate::{
     app::{AppContext, Hooks},
-    boot::{create_app, create_context, list_endpoints, run_task, start, RunDbCommand, StartMode},
+    boot::{
+        create_app, create_context, list_endpoints, run_task, start, RunDbCommand, ServeParams,
+        StartMode,
+    },
     environment::{resolve_from_env, Environment, DEFAULT_ENVIRONMENT},
     gen::{self, Component},
     logger, Result,
@@ -73,6 +76,12 @@ enum Commands {
         /// start same-process server and worker
         #[arg(short, long, action)]
         server_and_worker: bool,
+        /// server bind address
+        #[arg(short, long, action)]
+        binding: Option<String>,
+        /// server port address
+        #[arg(short, long, action)]
+        port: Option<i32>,
     },
     #[cfg(feature = "with-db")]
     /// Perform DB operations
@@ -279,6 +288,8 @@ pub async fn main<H: Hooks, M: MigratorTrait>() -> eyre::Result<()> {
         Commands::Start {
             worker,
             server_and_worker,
+            binding,
+            port,
         } => {
             let start_mode = if worker {
                 StartMode::WorkerOnly
@@ -289,7 +300,14 @@ pub async fn main<H: Hooks, M: MigratorTrait>() -> eyre::Result<()> {
             };
 
             let boot_result = create_app::<H, M>(start_mode, &environment).await?;
-            start(boot_result).await?;
+            let serve_params = ServeParams {
+                port: port.map_or(boot_result.app_context.config.server.port, |p| p),
+                binding: binding.map_or(
+                    boot_result.app_context.config.server.binding.to_string(),
+                    |b| b,
+                ),
+            };
+            start(boot_result, serve_params).await?;
         }
         #[cfg(feature = "with-db")]
         Commands::Db { command } => {
@@ -349,6 +367,8 @@ pub async fn main<H: Hooks>() -> eyre::Result<()> {
         Commands::Start {
             worker,
             server_and_worker,
+            binding,
+            port,
         } => {
             let start_mode = if worker {
                 StartMode::WorkerOnly
@@ -359,7 +379,14 @@ pub async fn main<H: Hooks>() -> eyre::Result<()> {
             };
 
             let boot_result = create_app::<H>(start_mode, &environment).await?;
-            start(boot_result).await?;
+            let serve_params = ServeParams {
+                port: port.map_or(boot_result.app_context.config.server.port, |p| p),
+                binding: binding.map_or(
+                    boot_result.app_context.config.server.binding.to_string(),
+                    |b| b,
+                ),
+            };
+            start(boot_result, serve_params).await?;
         }
         Commands::Routes {} => {
             let app_context = create_context::<H>(&environment).await?;
