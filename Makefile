@@ -101,7 +101,7 @@ install:
 #	cd hello    && cargo install  --force --path .
 #	cd wcr      && cargo install  --force --path .
 #	cd headr    && cargo install  --force --path .
-	ls -lrt ${HOME}/.cargo/bin
+	ls -lrt ${HOME}/.cargo/bin | tail -3
 
 cmk-agent-ctl:
 	(cd cmk-agent-ctl && cargo install  --force --path . )
