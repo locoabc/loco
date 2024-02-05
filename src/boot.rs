@@ -45,9 +45,11 @@ pub struct BootResult {
 
 /// Configuration structure for serving an application.
 pub struct ServeParams {
-    /// The port number on which the server will listen for incoming connections.
+    /// The port number on which the server will listen for incoming
+    /// connections.
     pub port: i32,
-    /// The network address to which the server will bind. It specifies the interface to listen on.
+    /// The network address to which the server will bind. It specifies the
+    /// interface to listen on.
     pub binding: String,
 }
 
@@ -59,7 +61,7 @@ pub struct ServeParams {
 /// # Errors
 ///
 /// When could not initialize the application.
-pub async fn start(boot: BootResult, server_config: ServeParams) -> Result<()> {
+pub async fn start<H: Hooks>(boot: BootResult, server_config: ServeParams) -> Result<()> {
     print_banner(&boot, &server_config);
 
     let BootResult {
@@ -75,10 +77,10 @@ pub async fn start(boot: BootResult, server_config: ServeParams) -> Result<()> {
                     tracing::error!("Error in processing: {:?}", err);
                 }
             });
-            serve(router, server_config).await?;
+            H::serve(router, server_config).await?;
         }
         (Some(router), None) => {
-            serve(router, server_config).await?;
+            H::serve(router, server_config).await?;
         }
         (None, Some(processor)) => {
             process(processor).await?;
@@ -167,17 +169,6 @@ pub async fn run_db<H: Hooks, M: MigratorTrait>(
             H::truncate(&app_context.db).await?;
         }
     }
-    Ok(())
-}
-
-/// Starts the server using the provided [`Router`] and [`ServeParams`].
-async fn serve(app: Router, server_config: ServeParams) -> Result<()> {
-    let listener =
-        tokio::net::TcpListener::bind(&format!("{}:{}", server_config.binding, server_config.port))
-            .await?;
-
-    axum::serve(listener, app).await?;
-
     Ok(())
 }
 

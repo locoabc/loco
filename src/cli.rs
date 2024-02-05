@@ -126,6 +126,10 @@ enum ComponentArg {
         #[arg(short, long, action)]
         link: bool,
 
+        /// Generate migration code only. Don't run the migration automatically.
+        #[arg(short, long, action)]
+        migration_only: bool,
+
         /// Model fields, eg. title:string hits:int
         #[clap(value_parser = parse_key_val::<String,String>)]
         fields: Vec<(String, String)>,
@@ -174,7 +178,17 @@ impl From<ComponentArg> for Component {
     fn from(value: ComponentArg) -> Self {
         match value {
             #[cfg(feature = "with-db")]
-            ComponentArg::Model { name, link, fields } => Self::Model { name, link, fields },
+            ComponentArg::Model {
+                name,
+                link,
+                migration_only,
+                fields,
+            } => Self::Model {
+                name,
+                link,
+                migration_only,
+                fields,
+            },
             #[cfg(feature = "with-db")]
             ComponentArg::Migration { name } => Self::Migration { name },
             #[cfg(feature = "with-db")]
@@ -307,7 +321,7 @@ pub async fn main<H: Hooks, M: MigratorTrait>() -> eyre::Result<()> {
                     |b| b,
                 ),
             };
-            start(boot_result, serve_params).await?;
+            start::<H>(boot_result, serve_params).await?;
         }
         #[cfg(feature = "with-db")]
         Commands::Db { command } => {
@@ -386,7 +400,7 @@ pub async fn main<H: Hooks>() -> eyre::Result<()> {
                     |b| b,
                 ),
             };
-            start(boot_result, serve_params).await?;
+            start::<H>(boot_result, serve_params).await?;
         }
         Commands::Routes {} => {
             let app_context = create_context::<H>(&environment).await?;

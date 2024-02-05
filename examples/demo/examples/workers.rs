@@ -1,5 +1,3 @@
-use std::{env, str::FromStr};
-
 use blo::app::App;
 use loco_rs::{
     boot::{create_app, start, ServeParams, StartMode},
@@ -16,6 +14,6 @@ async fn main() -> eyre::Result<()> {
         port: boot_result.app_context.config.server.port,
         binding: boot_result.app_context.config.server.binding.to_string(),
     };
-    start(boot_result, serve_params).await?;
+    start::<App>(boot_result, serve_params).await?;
     Ok(())
 }
