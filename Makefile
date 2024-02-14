@@ -94,13 +94,7 @@ commit:
 pull:
 	git pull
 install:
-		       cargo install  --force --path .
-#	cd lenovoad   && cargo install  --force --path .
-#	cd 15_lettre  && cargo install  --force --path .
-#	cd lettre     && cargo install  --force --path .
-#	cd hello    && cargo install  --force --path .
-#	cd wcr      && cargo install  --force --path .
-#	cd headr    && cargo install  --force --path .
+	cd loco-cli &&  cargo install  --force --path .
 	ls -lrt ${HOME}/.cargo/bin | tail -3
 
 installloco:
