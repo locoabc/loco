@@ -1,4 +1,4 @@
-d use std::process::exit;
+use std::process::exit;
 pub mod generate;
 pub mod git;
 pub mod prompt;
