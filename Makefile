@@ -103,48 +103,14 @@ install:
 #	cd headr    && cargo install  --force --path .
 	ls -lrt ${HOME}/.cargo/bin | tail -3
 
-cmk-agent-ctl:
-	(cd cmk-agent-ctl && cargo install  --force --path . )
-cmd-demo:
-	(cd cmd-demo && ./cmd-install.sh)
+installloco:
+	cd loco-cli  && cargo install  --force --path .
+	ls -lrt ${HOME}/.cargo/bin | tail -3
 
-cmkc:
-	(cd cmkc && cargo install  --force --path . )
-
-cmkrest:
-	(cd cmkrest &&  cargo install  --force --path .)
-
-install2:
-#	cd sqld/sqlc    && cargo install  --force --path .
-#	cd sqld/sqlc    && cargo install  --force --path .
-	ls -lrt ${HOME}/.cargo/bin
-
-installcmk:
-	cd cmk    && cargo install  --force --path .
-	ls -lrt ${HOME}/.cargo/bin | tail -10
-
-installsqld:
-	cd sqld   && make install 
-	ls -lrt ${HOME}/.cargo/bin | tail -10
-
-
-lxcorpm:
-	cd lxco && cargo build --release
-	cd lxco && strip -s target/release/lxco-get-20users
-	cd lxco && strip -s target/release/lxco-get-all-devices
-	cd lxco && cargo generate-rpm
-	cd lxco && ls -lrt 
-	rpm -qilp lxco/target/generate-rpm/*.rpm
 clip:
 	cargo clippy
 build:
 	cargo build && 	find target/debug  -maxdepth 1 -type f -perm /755 | egrep -v "\.d"
-sqld:
-	cd sqld && cargo build && find target/debug  -maxdepth 1 -type f -perm /755 | egrep -v "\.d"
-	cd sqld && cp -p target/debug/sqld target/debug/bottomless-cli ${HOME}/.cargo/bin
-	ls -lrt ${HOME}/.cargo/bin
-buildad:
-	cargo build -p lenovoad && find target/debug  -maxdepth 1 -type f -perm /755 | egrep -v "\.d"
 format:
 	cargo fmt -v
 
@@ -160,11 +126,6 @@ diff:
 #--bin cmdbc  -- --test-threads 1 --nocapture + 01 02 03 04 05 06 07 08 09 10 11 12 13 14
 test: 
 	cargo xtask test 
-test2: build
-	@echo "................ cmdbclient help                     ..................."
-	target/debug/cmdbc --help
-	@echo "................ Run cmdbc  -s -h va32rocky8t03  ..................."
-	target/debug/cmdbc -s -h va32rocky8t03
 
 help:
 	@echo "Usage: make <target> <argument>"
